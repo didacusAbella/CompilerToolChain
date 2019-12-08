@@ -1,0 +1,41 @@
+Questo analizzatore lessicale genera token seguendo queste specifiche:
+
+Legenda: 
+  | = or logico
+  * = zero o più ripetizioni di un carattere
+  + una o più ripetizioni di un carattere
+  - range di caratteri
+  ? carattere opzionale
+  \ Inizio e fine di un espressione regolare
+
+Definizione del linguaggio:
+
+Sia epsilon =  {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 
+    'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5',
+    '6', '7', '8', '9', '<', '>', '=', '!', '|', '&', '*', '+', '-', '^', '%', 
+    '/', '"', '$', '(', ')', ';', '[', ']','{', '}', '_', ' ', '.'
+  } il nostro alfabeto. Le keyword cha l'analizzatore sa riconoscere sono:
+
+Lessema  | Definizione Regolare | Espressione Regolare
+
+if         if                     if
+else       else                   else
+break      break                  break
+continue   continue               continue
+while      while                  while
+then       then                   then
+
+Altri tipi di definizioni regolari che l'analizzatore sa riconoscere sono:
+
+Definizione Regolare  |  Espressione Regolare
+
+separator                \(|)|,|;|[|]|{|}\
+letter                   \a-zA-Z\
+digit                    \0-9\
+digit_without_zero       \1-9\
+relop                    \<|>|=|!|&&|<=|>=|==|!=|||\
+mathop                   \+|-|*|/|%|^\
+identifier               \_*letter((letter|digit)*)?\
+number_literal           \0(.digit+)?|(digit_without_zero)digit*(.digit+)?\
+string_literal           \"epsilon*"\
